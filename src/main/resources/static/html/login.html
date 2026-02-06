@@ -4,72 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LeafGym - Login</title>
-    <link rel="stylesheet" href="css/login-styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-<div class="login-container">
-    <div class="login-box">
-        <div class="logo">
-            <h1>🏋️ LeafGym</h1>
-            <p class="tagline">Welcome Back</p>
-        </div>
-
-        <!-- Portal Selection -->
-        <div class="portal-selection">
-            <button class="portal-btn active" data-portal="member">
-                👤 Member Portal
-            </button>
-            <button class="portal-btn" data-portal="staff">
-                👔 Staff Portal
-            </button>
-        </div>
-
-        <!-- Login Form -->
-        <form id="loginForm">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" required placeholder="Enter your username">
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-box">
+            <!-- Logo -->
+            <div class="logo">
+                <h1>🏋️ LeafGym</h1>
+                <p>Welcome Back</p>
             </div>
 
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" required placeholder="Enter your password">
+            <!-- Portal Selection -->
+            <div class="portal-tabs">
+                <button class="portal-tab active" data-portal="member">
+                    <span class="icon">👤</span>
+                    <span>Member</span>
+                </button>
+                <button class="portal-tab" data-portal="staff">
+                    <span class="icon">👔</span>
+                    <span>Staff</span>
+                </button>
             </div>
 
-            <div id="errorMessage" class="error-message"></div>
+            <!-- Login Form -->
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" required placeholder="Enter username">
+                </div>
 
-            <button type="submit" class="login-btn">Login</button>
-        </form>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="password" required placeholder="Enter password">
+                </div>
 
-        <!-- Demo Credentials -->
-        <div class="demo-credentials">
-            <h4>Demo Credentials</h4>
-            <div class="credentials-grid">
-                <div class="cred-item">
-                    <strong>Member:</strong>
-                    <span>kelly19 / hash_kelly</span>
-                </div>
-                <div class="cred-item">
-                    <strong>Trainer:</strong>
-                    <span>paul_tr / hash_paul</span>
-                </div>
-                <div class="cred-item">
-                    <strong>Front Desk:</strong>
-                    <span>mj_fd / hash_mj</span>
-                </div>
-                <div class="cred-item">
-                    <strong>Manager:</strong>
-                    <span>baladjay_mgr / hash_bj</span>
-                </div>
-                <div class="cred-item">
-                    <strong>Admin:</strong>
-                    <span>admin_karl / hash_karl</span>
+                <div class="error-message" id="errorMsg"></div>
+
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
+            </form>
+
+            <!-- Demo Info -->
+            <div class="demo-info">
+                <p class="demo-title">Demo Accounts:</p>
+                <div class="demo-list">
+                    <span class="demo-item" onclick="fillDemo('kelly19','hash_kelly','member')">Member: kelly19</span>
+                    <span class="demo-item" onclick="fillDemo('paul_tr','hash_paul','staff')">Trainer: paul_tr</span>
+                    <span class="demo-item" onclick="fillDemo('mj_fd','hash_mj','staff')">Front Desk: mj_fd</span>
+                    <span class="demo-item" onclick="fillDemo('baladjay_mgr','hash_bj','staff')">Manager: baladjay_mgr</span>
+                    <span class="demo-item" onclick="fillDemo('admin_karl','hash_karl','staff')">Admin: admin_karl</span>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<script src="../../../../../../../Desktop/login-script.js"></script>
+    <script src="login.js"></script>
 </body>
 </html>

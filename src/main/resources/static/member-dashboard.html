@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Dashboard - LeafGym</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="member-dashboard.css">
+</head>
+<body>
+<div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            <h2>🏋️ LeafGym</h2>
+            <p class="user-role">Member Portal</p>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="#" class="nav-item active" data-page="dashboard">
+                <span class="icon">📊</span>
+                <span>Dashboard</span>
+            </a>
+            <a href="#" class="nav-item" data-page="classes">
+                <span class="icon">🏃</span>
+                <span>Classes</span>
+            </a>
+            <a href="#" class="nav-item" data-page="attendance">
+                <span class="icon">📅</span>
+                <span>Attendance</span>
+            </a>
+            <a href="#" class="nav-item" data-page="facilities">
+                <span class="icon">🏢</span>
+                <span>Facilities</span>
+            </a>
+            <a href="#" class="nav-item" data-page="payments">
+                <span class="icon">💳</span>
+                <span>Payments</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <p id="userName">Loading...</p>
+                <p class="user-email" id="userMembership">Member</p>
+            </div>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="page-header">
+            <h1 id="pageTitle">Dashboard</h1>
+            <div class="header-actions">
+                <button class="btn btn-primary" id="checkInOutBtn">Check In</button>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div id="dashboardContent" class="content-page active">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">🎫</div>
+                    <div class="stat-info">
+                        <p class="stat-label">Membership Type</p>
+                        <h3 class="stat-value" id="membershipType">Loading...</h3>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-info">
+                        <p class="stat-label">Status</p>
+                        <h3 class="stat-value" id="memberStatus">Loading...</h3>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📆</div>
+                    <div class="stat-info">
+                        <p class="stat-label">Days Remaining</p>
+                        <h3 class="stat-value" id="daysRemaining">--</h3>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🕐</div>
+                    <div class="stat-info">
+                        <p class="stat-label">Last Visit</p>
+                        <h3 class="stat-value" id="lastVisit">Never</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quick-actions">
+                <h2>Quick Actions</h2>
+                <div class="actions-grid">
+                    <button class="action-card" onclick="navigateTo('classes')">
+                        <span class="action-icon">🏃</span>
+                        <h3>View Classes</h3>
+                        <p>Browse and join classes</p>
+                    </button>
+                    <button class="action-card" onclick="navigateTo('facilities')">
+                        <span class="action-icon">🏢</span>
+                        <h3>Use Facilities</h3>
+                        <p>Book gym facilities</p>
+                    </button>
+                    <button class="action-card" onclick="navigateTo('payments')">
+                        <span class="action-icon">💳</span>
+                        <h3>Payment History</h3>
+                        <p>View transactions</p>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Classes Content -->
+        <div id="classesContent" class="content-page">
+            <div class="classes-list" id="classesList">
+                <p class="loading">Loading classes...</p>
+            </div>
+        </div>
+
+        <!-- Attendance Content -->
+        <div id="attendanceContent" class="content-page">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="gym">Gym Attendance</button>
+                <button class="tab-btn" data-tab="class">Class Attendance</button>
+            </div>
+            <div class="tab-content active" id="gymAttendanceTab">
+                <table class="data-table">
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Check In</th>
+                        <th>Check Out</th>
+                        <th>Duration</th>
+                    </tr>
+                    </thead>
+                    <tbody id="gymAttendanceBody">
+                    <tr><td colspan="4" class="loading">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-content" id="classAttendanceTab">
+                <table class="data-table">
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Class</th>
+                        <th>Trainer</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody id="classAttendanceBody">
+                    <tr><td colspan="4" class="loading">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Facilities Content -->
+        <div id="facilitiesContent" class="content-page">
+            <div class="facilities-grid" id="facilitiesGrid">
+                <p class="loading">Loading facilities...</p>
+            </div>
+        </div>
+
+        <!-- Payments Content -->
+        <div id="paymentsContent" class="content-page">
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Method</th>
+                    <th>Reference #</th>
+                </tr>
+                </thead>
+                <tbody id="paymentsBody">
+                <tr><td colspan="4" class="loading">Loading...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+
+<script src="member-dashboard.js"></script>
+</body>
+</html>

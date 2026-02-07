@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - LeafGym</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">🌿</div>
+                <div class="logo-text">
+                    <h1>LeafGym</h1>
+                    <p>Admin Portal</p>
+                </div>
+            </div>
+            <div class="user-info">
+                <div>
+                    <div style="text-align: right; font-weight: 600;">Karl</div>
+                    <div style="font-size: 0.75rem; color: var(--text-secondary);">System Administrator</div>
+                </div>
+                <div class="user-avatar">K</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Analytics Dashboard -->
+        <div class="dashboard-grid">
+            <div class="analytics-card">
+                <div class="card-header">
+                    <h3>Total Users</h3>
+                    <div class="card-icon">👥</div>
+                </div>
+                <div class="stat-value">9</div>
+                <div class="stat-breakdown">
+                    <span>5 Members</span>
+                    <span>4 Staff</span>
+                </div>
+            </div>
+
+            <div class="analytics-card">
+                <div class="card-header">
+                    <h3>Staff Breakdown</h3>
+                    <div class="card-icon">👔</div>
+                </div>
+                <div class="stat-value">4</div>
+                <div class="stat-breakdown">
+                    <span>1 Admin</span>
+                    <span>1 Manager</span>
+                    <span>1 Trainer</span>
+                    <span>1 FD</span>
+                </div>
+            </div>
+
+            <div class="analytics-card">
+                <div class="card-header">
+                    <h3>Revenue Summary</h3>
+                    <div class="card-icon">💰</div>
+                </div>
+                <div class="stat-value">₱6,500</div>
+                <div class="stat-breakdown">
+                    <span>This month</span>
+                </div>
+            </div>
+
+            <div class="analytics-card">
+                <div class="card-header">
+                    <h3>System Alerts</h3>
+                    <div class="card-icon">⚠️</div>
+                </div>
+                <div class="stat-value">0</div>
+                <div class="stat-breakdown">
+                    <span>All systems operational</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="switchTab('staff')">Staff Management</button>
+            <button class="nav-tab" onclick="switchTab('settings')">System Settings</button>
+        </div>
+
+        <!-- Staff Management Tab -->
+        <div id="staff-tab" class="tab-content active">
+            <div class="section">
+                <div class="section-header">
+                    <h2>Staff Management</h2>
+                    <button class="btn btn-primary" onclick="openAddStaff()">Add New Staff</button>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Staff ID</th>
+                                <th>Name</th>
+                                <th>Role</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#S001</td>
+                                <td>Paul</td>
+                                <td><span class="badge badge-trainer">Trainer</span></td>
+                                <td>paul@gmail.com</td>
+                                <td>09111111111</td>
+                                <td><span class="badge badge-active">Active</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-primary btn-sm" onclick="editStaff(1)">Edit</button>
+                                        <button class="btn btn-secondary btn-sm" onclick="promoteStaff(1)">Promote</button>
+                                        <button class="btn btn-danger btn-sm" onclick="removeStaff(1, 'Paul')">Remove</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#S002</td>
+                                <td>MJ</td>
+                                <td><span class="badge badge-frontdesk">Front Desk</span></td>
+                                <td>mj@gmail.com</td>
+                                <td>09222222222</td>
+                                <td><span class="badge badge-active">Active</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-primary btn-sm" onclick="editStaff(2)">Edit</button>
+                                        <button class="btn btn-secondary btn-sm" onclick="promoteStaff(2)">Promote</button>
+                                        <button class="btn btn-danger btn-sm" onclick="removeStaff(2, 'MJ')">Remove</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#S003</td>
+                                <td>BaladJay</td>
+                                <td><span class="badge badge-manager">Manager</span></td>
+                                <td>baladjay@gmail.com</td>
+                                <td>09444444444</td>
+                                <td><span class="badge badge-active">Active</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-primary btn-sm" onclick="editStaff(3)">Edit</button>
+                                        <button class="btn btn-secondary btn-sm" onclick="promoteStaff(3)">Promote</button>
+                                        <button class="btn btn-danger btn-sm" onclick="removeStaff(3, 'BaladJay')">Remove</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#S004</td>
+                                <td>Karl</td>
+                                <td><span class="badge badge-admin">Admin</span></td>
+                                <td>karl@gmail.com</td>
+                                <td>09555555555</td>
+                                <td><span class="badge badge-active">Active</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-primary btn-sm" onclick="editStaff(4)">Edit</button>
+                                        <button class="btn btn-secondary btn-sm" disabled>Promote</button>
+                                        <button class="btn btn-danger btn-sm" disabled>Remove</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Settings Tab -->
+        <div id="settings-tab" class="tab-content">
+            <div class="section">
+                <div class="section-header">
+                    <h2>System Settings</h2>
+                </div>
+
+                <div class="settings-grid">
+                    <div class="settings-card">
+                        <h3>Roles & Permissions</h3>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">Configure access levels and permissions for different staff roles.</p>
+                        
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Role</th>
+                                        <th>Permissions</th>
+                                        <th>Users</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="badge badge-admin">Admin</span></td>
+                                        <td>Full System Access</td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="badge badge-manager">Manager</span></td>
+                                        <td>Analytics, Classes, Equipment, Rooms</td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="badge badge-trainer">Trainer</span></td>
+                                        <td>Classes, Attendance</td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="badge badge-frontdesk">Front Desk</span></td>
+                                        <td>Members, Check-in, Payments</td>
+                                        <td>1</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3>Membership Pricing</h3>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">Manage membership types and pricing.</p>
+                        
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Membership Type</th>
+                                        <th>Price</th>
+                                        <th>Duration</th>
+                                        <th>Access Level</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Basic</td>
+                                        <td>₱1,000</td>
+                                        <td>30 days</td>
+                                        <td>Gym Only</td>
+                                        <td><button class="btn btn-primary btn-sm" onclick="editMembership(1)">Edit</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Premium</td>
+                                        <td>₱2,000</td>
+                                        <td>30 days</td>
+                                        <td>Gym + Classes</td>
+                                        <td><button class="btn btn-primary btn-sm" onclick="editMembership(2)">Edit</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>VIP</td>
+                                        <td>₱3,500</td>
+                                        <td>60 days</td>
+                                        <td>All Access</td>
+                                        <td><button class="btn btn-primary btn-sm" onclick="editMembership(3)">Edit</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3>Audit Logs</h3>
+                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">View recent system activities and changes.</p>
+                        
+                        <div class="alert alert-info">
+                            ℹ️ Last backup: January 20, 2025 at 02:00 AM
+                        </div>
+
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Timestamp</th>
+                                        <th>User</th>
+                                        <th>Action</th>
+                                        <th>Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>2025-01-20 09:15</td>
+                                        <td>Karl (Admin)</td>
+                                        <td>Login</td>
+                                        <td>Successful authentication</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2025-01-20 08:30</td>
+                                        <td>BaladJay (Manager)</td>
+                                        <td>Class Created</td>
+                                        <td>Morning Yoga - Jan 20</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2025-01-19 16:45</td>
+                                        <td>MJ (Front Desk)</td>
+                                        <td>Payment Processed</td>
+                                        <td>Lyle - VIP Membership - ₱3,500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2025-01-18 14:20</td>
+                                        <td>Paul (Trainer)</td>
+                                        <td>Attendance Marked</td>
+                                        <td>Morning Yoga - 2 members</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Staff Modal -->
+    <div id="addStaffModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Staff</h2>
+                <button class="close-btn" onclick="closeAddStaff()">×</button>
+            </div>
+            <form onsubmit="submitAddStaff(event)">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="Enter full name" required>
+                </div>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" placeholder="Enter username" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="Enter password" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="example@gmail.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" placeholder="09XXXXXXXXX" required>
+                </div>
+                <div class="form-group">
+                    <label>Age</label>
+                    <input type="number" placeholder="25">
+                </div>
+                <div class="form-group">
+                    <label>Gender</label>
+                    <select required>
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Position</label>
+                    <select required>
+                        <option value="">Select Position</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Manager">Manager</option>
+                        <option value="Trainer">Trainer</option>
+                        <option value="Front Desk">Front Desk</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeAddStaff()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Staff</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Staff Modal -->
+    <div id="editStaffModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Staff Member</h2>
+                <button class="close-btn" onclick="closeEditStaff()">×</button>
+            </div>
+            <form onsubmit="submitEditStaff(event)">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="editName" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="editEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="editPhone" required>
+                </div>
+                <div class="form-group">
+                    <label>Position</label>
+                    <select id="editPosition" required>
+                        <option value="Admin">Admin</option>
+                        <option value="Manager">Manager</option>
+                        <option value="Trainer">Trainer</option>
+                        <option value="Front Desk">Front Desk</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Status</label>
+                    <select id="editStatus" required>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeEditStaff()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Promote Staff Modal -->
+    <div id="promoteModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Promote/Demote Staff</h2>
+                <button class="close-btn" onclick="closePromoteModal()">×</button>
+            </div>
+            <form onsubmit="submitPromote(event)">
+                <div class="form-group">
+                    <label>New Position</label>
+                    <select required>
+                        <option value="">Select Position</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Manager">Manager</option>
+                        <option value="Trainer">Trainer</option>
+                        <option value="Front Desk">Front Desk</option>
+                    </select>
+                </div>
+                <div class="alert alert-warning">
+                    ⚠️ Changing staff roles will update their access permissions immediately.
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closePromoteModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Confirm Change</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.getElementById(tabName + '-tab').classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function openAddStaff() {
+            document.getElementById('addStaffModal').classList.add('active');
+        }
+
+        function closeAddStaff() {
+            document.getElementById('addStaffModal').classList.remove('active');
+        }
+
+        function submitAddStaff(event) {
+            event.preventDefault();
+            alert('New staff member added successfully!');
+            closeAddStaff();
+        }
+
+        function editStaff(staffId) {
+            document.getElementById('editStaffModal').classList.add('active');
+        }
+
+        function closeEditStaff() {
+            document.getElementById('editStaffModal').classList.remove('active');
+        }
+
+        function submitEditStaff(event) {
+            event.preventDefault();
+            alert('Staff information updated successfully!');
+            closeEditStaff();
+        }
+
+        function promoteStaff(staffId) {
+            document.getElementById('promoteModal').classList.add('active');
+        }
+
+        function closePromoteModal() {
+            document.getElementById('promoteModal').classList.remove('active');
+        }
+
+        function submitPromote(event) {
+            event.preventDefault();
+            alert('Staff role updated successfully!');
+            closePromoteModal();
+        }
+
+        function removeStaff(staffId, staffName) {
+            if (confirm(`Are you sure you want to remove ${staffName} from the staff?`)) {
+                alert(`${staffName} has been removed from the system.`);
+            }
+        }
+
+        function editMembership(membershipId) {
+            alert('Editing membership type ID: ' + membershipId);
+        }
+
+        window.onclick = function(event) {
+            const addStaffModal = document.getElementById('addStaffModal');
+            const editStaffModal = document.getElementById('editStaffModal');
+            const promoteModal = document.getElementById('promoteModal');
+            
+            if (event.target === addStaffModal) {
+                closeAddStaff();
+            }
+            if (event.target === editStaffModal) {
+                closeEditStaff();
+            }
+            if (event.target === promoteModal) {
+                closePromoteModal();
+            }
+        }
+    </script>
+
+    <script src="../js/admin.js"></script>
+</body>
+</html>

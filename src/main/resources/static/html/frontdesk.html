@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Front Desk Dashboard - LeafGym</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/frontdesk.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">🌿</div>
+                <div class="logo-text">
+                    <h1>LeafGym</h1>
+                    <p>Front Desk</p>
+                </div>
+            </div>
+            <div class="user-info">
+                <div>
+                    <div style="text-align: right; font-weight: 600;">MJ</div>
+                    <div style="font-size: 0.75rem; color: var(--text-secondary);">Front Desk Staff</div>
+                </div>
+                <div class="user-avatar">MJ</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Dashboard Stats -->
+        <div class="dashboard-grid">
+            <div class="stat-card">
+                <h3>Today's Check-ins</h3>
+                <div class="stat-value">24</div>
+                <div class="stat-label">Active sessions ongoing</div>
+            </div>
+            <div class="stat-card">
+                <h3>Active Members</h3>
+                <div class="stat-value">5</div>
+                <div class="stat-label">Currently enrolled</div>
+            </div>
+            <div class="stat-card">
+                <h3>Payments Today</h3>
+                <div class="stat-value">₱6,500</div>
+                <div class="stat-label">3 transactions processed</div>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="switchTab('members')">Members</button>
+            <button class="nav-tab" onclick="switchTab('checkin')">Check In/Out</button>
+            <button class="nav-tab" onclick="switchTab('payments')">Payments</button>
+        </div>
+
+        <!-- Members Tab -->
+        <div id="members-tab" class="tab-content active">
+            <div class="section">
+                <div class="section-header">
+                    <h2>Member Management</h2>
+                </div>
+
+                <div class="search-bar">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="memberSearch" placeholder="Search members by name, ID, or membership type..." onkeyup="searchMembers()">
+                </div>
+
+                <div class="table-container">
+                    <table id="membersTable">
+                        <thead>
+                            <tr>
+                                <th>Member ID</th>
+                                <th>Name</th>
+                                <th>Membership</th>
+                                <th>Status</th>
+                                <th>Phone</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="membersTableBody">
+                            <tr>
+                                <td>#001</td>
+                                <td>Kelly</td>
+                                <td><span class="badge badge-basic">Basic</span></td>
+                                <td><span class="badge badge-active">Active</span></td>
+                                <td>09123456789</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-primary btn-sm" onclick="quickCheckIn(1, 'Kelly')">Check In</button>
+                                        <button class="btn btn-secondary btn-sm" onclick="viewMemberHistory(1)">History</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#002</td>
+                                <td>Salad</td>
+                                <td><span class="badge badge-premium">Premium</span></td>
+                                <td><span class="badge badge-active">Active</span></td>
+                                <td>09987654321</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-primary btn-sm" onclick="quickCheckIn(2, 'Salad')">Check In</button>
+                                        <button class="btn btn-secondary btn-sm" onclick="viewMemberHistory(2)">History</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#003</td>
+                                <td>Jonela</td>
+                                <td><span class="badge badge-vip">VIP</span></td>
+                                <td><span class="badge badge-active">Active</span></td>
+                                <td>09223334444</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-primary btn-sm" onclick="quickCheckIn(3, 'Jonela')">Check In</button>
+                                        <button class="btn btn-secondary btn-sm" onclick="viewMemberHistory(3)">History</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#004</td>
+                                <td>Areisha</td>
+                                <td><span class="badge badge-vip">VIP</span></td>
+                                <td><span class="badge badge-active">Active</span></td>
+                                <td>09334445555</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-primary btn-sm" onclick="quickCheckIn(4, 'Areisha')">Check In</button>
+                                        <button class="btn btn-secondary btn-sm" onclick="viewMemberHistory(4)">History</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#005</td>
+                                <td>Lyle</td>
+                                <td><span class="badge badge-vip">VIP</span></td>
+                                <td><span class="badge badge-active">Active</span></td>
+                                <td>09246832456</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-primary btn-sm" onclick="quickCheckIn(5, 'Lyle')">Check In</button>
+                                        <button class="btn btn-secondary btn-sm" onclick="viewMemberHistory(5)">History</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Check In/Out Tab -->
+        <div id="checkin-tab" class="tab-content">
+            <div class="section">
+                <div class="section-header">
+                    <h2>Check In / Check Out</h2>
+                </div>
+
+                <div class="search-bar">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Search member to check in/out...">
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Member</th>
+                                <th>Check In Time</th>
+                                <th>Duration</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Kelly</td>
+                                <td>08:05 AM</td>
+                                <td>1h 25m</td>
+                                <td><span class="badge badge-active">Checked In</span></td>
+                                <td>
+                                    <button class="btn btn-secondary btn-sm" onclick="checkOut(1, 'Kelly')">Check Out</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Salad</td>
+                                <td>10:00 AM</td>
+                                <td>1h 15m</td>
+                                <td><span class="badge badge-active">Checked In</span></td>
+                                <td>
+                                    <button class="btn btn-secondary btn-sm" onclick="checkOut(2, 'Salad')">Check Out</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payments Tab -->
+        <div id="payments-tab" class="tab-content">
+            <div class="section">
+                <div class="section-header">
+                    <h2>Payment Entry</h2>
+                    <button class="btn btn-primary" onclick="openPaymentModal()">New Payment</button>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Member</th>
+                                <th>Membership Type</th>
+                                <th>Amount</th>
+                                <th>Method</th>
+                                <th>Reference</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2025-01-10</td>
+                                <td>Kelly</td>
+                                <td><span class="badge badge-basic">Basic</span></td>
+                                <td>₱1,000</td>
+                                <td>Cash</td>
+                                <td>PAY-001</td>
+                            </tr>
+                            <tr>
+                                <td>2025-01-12</td>
+                                <td>Salad</td>
+                                <td><span class="badge badge-premium">Premium</span></td>
+                                <td>₱2,000</td>
+                                <td>GCash</td>
+                                <td>PAY-002</td>
+                            </tr>
+                            <tr>
+                                <td>2025-01-15</td>
+                                <td>Jonela</td>
+                                <td><span class="badge badge-vip">VIP</span></td>
+                                <td>₱3,500</td>
+                                <td>Card</td>
+                                <td>PAY-003</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>New Payment</h2>
+                <button class="close-btn" onclick="closePaymentModal()">×</button>
+            </div>
+            <form onsubmit="submitPayment(event)">
+                <div class="form-group">
+                    <label>Member</label>
+                    <select required>
+                        <option value="">Select Member</option>
+                        <option value="1">Kelly (#001)</option>
+                        <option value="2">Salad (#002)</option>
+                        <option value="3">Jonela (#003)</option>
+                        <option value="4">Areisha (#004)</option>
+                        <option value="5">Lyle (#005)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Membership Type</label>
+                    <select id="membershipType" onchange="updateAmount()" required>
+                        <option value="">Select Membership</option>
+                        <option value="1000">Basic - ₱1,000</option>
+                        <option value="2000">Premium - ₱2,000</option>
+                        <option value="3500">VIP - ₱3,500</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Amount</label>
+                    <input type="number" id="paymentAmount" placeholder="₱0.00" required readonly>
+                </div>
+                <div class="form-group">
+                    <label>Payment Method</label>
+                    <select required>
+                        <option value="">Select Method</option>
+                        <option value="cash">Cash</option>
+                        <option value="gcash">GCash</option>
+                        <option value="card">Card</option>
+                        <option value="bank">Bank Transfer</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Reference Number (Optional)</label>
+                    <input type="text" placeholder="Enter reference number">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closePaymentModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Confirm Payment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Member History Modal -->
+    <div id="historyModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Member History</h2>
+                <button class="close-btn" onclick="closeHistoryModal()">×</button>
+            </div>
+            <div id="historyContent">
+                <h3 style="color: var(--primary); margin-bottom: 1rem;">Attendance History</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Check In</th>
+                                <th>Check Out</th>
+                                <th>Duration</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyTableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all nav tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            // Add active class to clicked nav tab
+            event.target.classList.add('active');
+        }
+
+        function openPaymentModal() {
+            document.getElementById('paymentModal').classList.add('active');
+        }
+
+        function closePaymentModal() {
+            document.getElementById('paymentModal').classList.remove('active');
+        }
+
+        function updateAmount() {
+            const select = document.getElementById('membershipType');
+            const amountInput = document.getElementById('paymentAmount');
+            amountInput.value = select.value;
+        }
+
+        function submitPayment(event) {
+            event.preventDefault();
+            alert('Payment processed successfully!');
+            closePaymentModal();
+        }
+
+        function quickCheckIn(memberId, memberName) {
+            const now = new Date();
+            const time = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+            alert(`${memberName} checked in at ${time}`);
+        }
+
+        function checkOut(memberId, memberName) {
+            const now = new Date();
+            const time = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+            alert(`${memberName} checked out at ${time}`);
+        }
+
+        function viewMemberHistory(memberId) {
+            document.getElementById('historyModal').classList.add('active');
+            
+            // Sample history data
+            const historyData = [
+                { date: '2025-01-18', checkIn: '08:05 AM', checkOut: '09:30 AM', duration: '1h 25m' },
+                { date: '2025-01-17', checkIn: '07:30 AM', checkOut: '09:00 AM', duration: '1h 30m' },
+                { date: '2025-01-16', checkIn: '08:15 AM', checkOut: '10:00 AM', duration: '1h 45m' }
+            ];
+            
+            const tbody = document.getElementById('historyTableBody');
+            tbody.innerHTML = historyData.map(record => `
+                <tr>
+                    <td>${record.date}</td>
+                    <td>${record.checkIn}</td>
+                    <td>${record.checkOut}</td>
+                    <td>${record.duration}</td>
+                </tr>
+            `).join('');
+        }
+
+        function closeHistoryModal() {
+            document.getElementById('historyModal').classList.remove('active');
+        }
+
+        function searchMembers() {
+            const input = document.getElementById('memberSearch');
+            const filter = input.value.toUpperCase();
+            const table = document.getElementById('membersTable');
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < rows.length; i++) {
+                const row = rows[i];
+                const cells = row.getElementsByTagName('td');
+                let found = false;
+
+                for (let j = 0; j < cells.length; j++) {
+                    const cell = cells[j];
+                    if (cell) {
+                        const textValue = cell.textContent || cell.innerText;
+                        if (textValue.toUpperCase().indexOf(filter) > -1) {
+                            found = true;
+                            break;
+                        }
+                    }
+                }
+
+                row.style.display = found ? '' : 'none';
+            }
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const paymentModal = document.getElementById('paymentModal');
+            const historyModal = document.getElementById('historyModal');
+            if (event.target === paymentModal) {
+                closePaymentModal();
+            }
+            if (event.target === historyModal) {
+                closeHistoryModal();
+            }
+        }
+    </script>
+
+    <script src="../js/frontdesk.js"></script>
+</body>
+</html>

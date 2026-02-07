@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trainer Dashboard - LeafGym</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/trainer.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">🌿</div>
+                <div class="logo-text">
+                    <h1>LeafGym</h1>
+                    <p>Trainer Portal</p>
+                </div>
+            </div>
+            <div class="user-info">
+                <div>
+                    <div style="text-align: right; font-weight: 600;">Paul</div>
+                    <div style="font-size: 0.75rem; color: var(--text-secondary);">Certified Trainer</div>
+                </div>
+                <div class="user-avatar">P</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Dashboard Stats -->
+        <div class="dashboard-grid">
+            <div class="stat-card">
+                <h3>Today's Classes</h3>
+                <div class="stat-value">2</div>
+                <div class="stat-label">Morning Yoga & Zumba Fitness</div>
+            </div>
+            <div class="stat-card">
+                <h3>Assigned Rooms</h3>
+                <div class="stat-value">2</div>
+                <div class="stat-label">Yoga Room, Cardio Room</div>
+            </div>
+            <div class="stat-card">
+                <h3>Total Enrolled</h3>
+                <div class="stat-value">45</div>
+                <div class="stat-label">Members across all classes</div>
+            </div>
+        </div>
+
+        <!-- Today's Schedule -->
+        <div class="section">
+            <div class="section-header">
+                <h2>Today's Schedule</h2>
+            </div>
+
+            <div class="class-card">
+                <div class="class-header">
+                    <div>
+                        <div class="class-title">Morning Yoga</div>
+                        <div class="class-time">08:00 - 09:00</div>
+                    </div>
+                    <div class="class-badge">TODAY</div>
+                </div>
+
+                <div class="class-details">
+                    <div class="detail-item">
+                        <div class="detail-icon">📍</div>
+                        <div class="detail-text">
+                            <div class="detail-label">Location</div>
+                            <div class="detail-value">Yoga Room</div>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-icon">👥</div>
+                        <div class="detail-text">
+                            <div class="detail-label">Capacity</div>
+                            <div class="detail-value">2/20 Enrolled</div>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-icon">📅</div>
+                        <div class="detail-text">
+                            <div class="detail-label">Date</div>
+                            <div class="detail-value">Jan 20, 2025</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="class-actions">
+                    <button class="btn btn-primary" onclick="openAttendance(1, 'Morning Yoga')">Mark Attendance</button>
+                    <button class="btn btn-secondary" onclick="viewClassDetails(1)">View Details</button>
+                </div>
+            </div>
+
+            <div class="class-card">
+                <div class="class-header">
+                    <div>
+                        <div class="class-title">Zumba Fitness</div>
+                        <div class="class-time">10:00 - 11:00</div>
+                    </div>
+                    <div class="class-badge">TODAY</div>
+                </div>
+
+                <div class="class-details">
+                    <div class="detail-item">
+                        <div class="detail-icon">📍</div>
+                        <div class="detail-text">
+                            <div class="detail-label">Location</div>
+                            <div class="detail-value">Cardio Room</div>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-icon">👥</div>
+                        <div class="detail-text">
+                            <div class="detail-label">Capacity</div>
+                            <div class="detail-value">1/25 Enrolled</div>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-icon">📅</div>
+                        <div class="detail-text">
+                            <div class="detail-label">Date</div>
+                            <div class="detail-value">Jan 20, 2025</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="class-actions">
+                    <button class="btn btn-primary" onclick="openAttendance(2, 'Zumba Fitness')">Mark Attendance</button>
+                    <button class="btn btn-secondary" onclick="viewClassDetails(2)">View Details</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- All Classes -->
+        <div class="section">
+            <div class="section-header">
+                <h2>My Classes</h2>
+            </div>
+
+            <div class="class-list">
+                <div class="class-list-item">
+                    <div class="class-info">
+                        <div class="class-name">Morning Yoga</div>
+                        <div class="class-meta">
+                            <span>⏰ 08:00 - 09:00</span>
+                            <span>📍 Yoga Room</span>
+                            <span>👥 20 Slots</span>
+                        </div>
+                    </div>
+                    <div class="class-actions">
+                        <button class="btn btn-primary btn-sm" onclick="openAttendance(1, 'Morning Yoga')">Attendance</button>
+                    </div>
+                </div>
+
+                <div class="class-list-item">
+                    <div class="class-info">
+                        <div class="class-name">Zumba Fitness</div>
+                        <div class="class-meta">
+                            <span>⏰ 10:00 - 11:00</span>
+                            <span>📍 Cardio Room</span>
+                            <span>👥 25 Slots</span>
+                        </div>
+                    </div>
+                    <div class="class-actions">
+                        <button class="btn btn-primary btn-sm" onclick="openAttendance(2, 'Zumba Fitness')">Attendance</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Attendance Modal -->
+    <div id="attendanceModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="attendanceTitle">Mark Attendance</h2>
+                <button class="close-btn" onclick="closeAttendance()">×</button>
+            </div>
+
+            <div class="attendance-list" id="attendanceList">
+                <!-- Attendance items will be populated here -->
+            </div>
+
+            <button class="btn btn-primary save-attendance-btn" onclick="saveAttendance()">Save Attendance</button>
+        </div>
+    </div>
+
+    <script>
+        const classMembers = {
+            1: [ // Morning Yoga
+                { id: 1, name: 'Kelly', membership: 'Basic' },
+                { id: 2, name: 'Salad', membership: 'Premium' }
+            ],
+            2: [ // Zumba Fitness
+                { id: 2, name: 'Salad', membership: 'Premium' }
+            ]
+        };
+
+        const attendanceStatus = {};
+
+        function openAttendance(classId, className) {
+            document.getElementById('attendanceTitle').textContent = `Mark Attendance - ${className}`;
+            document.getElementById('attendanceModal').classList.add('active');
+
+            const members = classMembers[classId] || [];
+            const attendanceList = document.getElementById('attendanceList');
+            
+            attendanceList.innerHTML = members.map(member => {
+                const status = attendanceStatus[`${classId}-${member.id}`] || 'present';
+                return `
+                    <div class="attendance-item">
+                        <div class="member-info">
+                            <div class="member-avatar">${member.name.charAt(0)}</div>
+                            <div class="member-details">
+                                <h3>${member.name}</h3>
+                                <p>${member.membership} Member</p>
+                            </div>
+                        </div>
+                        <div class="toggle-group">
+                            <button class="toggle-btn ${status === 'present' ? 'active' : ''}" 
+                                    onclick="setAttendance(${classId}, ${member.id}, 'present', this)">
+                                ✓ Present
+                            </button>
+                            <button class="toggle-btn ${status === 'absent' ? 'active absent' : ''}" 
+                                    onclick="setAttendance(${classId}, ${member.id}, 'absent', this)">
+                                ✗ Absent
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function closeAttendance() {
+            document.getElementById('attendanceModal').classList.remove('active');
+        }
+
+        function setAttendance(classId, memberId, status, button) {
+            attendanceStatus[`${classId}-${memberId}`] = status;
+            
+            // Update UI
+            const toggleGroup = button.parentElement;
+            const buttons = toggleGroup.querySelectorAll('.toggle-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active', 'absent');
+            });
+            
+            button.classList.add('active');
+            if (status === 'absent') {
+                button.classList.add('absent');
+            }
+        }
+
+        function saveAttendance() {
+            alert('Attendance saved successfully!');
+            closeAttendance();
+        }
+
+        function viewClassDetails(classId) {
+            alert('Viewing class details for class ID: ' + classId);
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('attendanceModal');
+            if (event.target === modal) {
+                closeAttendance();
+            }
+        }
+    </script>
+
+    <script src="../js/trainer.js"></script>
+</body>
+</html>

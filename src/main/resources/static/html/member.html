@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Dashboard - LeafGym</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>🏋️ LeafGym</h2>
+                <p>Member Portal</p>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" data-page="dashboard">
+                    <span>📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-page="classes">
+                    <span>🏃</span>
+                    <span>Classes</span>
+                </a>
+                <a href="#" class="nav-item" data-page="attendance">
+                    <span>📅</span>
+                    <span>Attendance</span>
+                </a>
+                <a href="#" class="nav-item" data-page="facilities">
+                    <span>🏢</span>
+                    <span>Facilities</span>
+                </a>
+                <a href="#" class="nav-item" data-page="payments">
+                    <span>💳</span>
+                    <span>Payments</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <p class="user-name" id="userName">Loading...</p>
+                    <p class="user-role" id="userMembership">Member</p>
+                </div>
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Page -->
+            <div id="dashboardPage" class="content-page active">
+                <div class="page-header">
+                    <h1>Dashboard</h1>
+                    <button class="btn btn-primary" id="checkInOutBtn" onclick="handleCheckInOut()">Check In</button>
+                </div>
+
+                <!-- Member Info Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">🎫</div>
+                        <div class="stat-info">
+                            <p class="stat-label">Membership Type</p>
+                            <h3 class="stat-value" id="membershipType">-</h3>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-info">
+                            <p class="stat-label">Status</p>
+                            <h3 class="stat-value" id="memberStatus">-</h3>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📆</div>
+                        <div class="stat-info">
+                            <p class="stat-label">Days Remaining</p>
+                            <h3 class="stat-value" id="daysRemaining">-</h3>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🕐</div>
+                        <div class="stat-info">
+                            <p class="stat-label">Last Visit</p>
+                            <h3 class="stat-value" id="lastVisit">-</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="section-card">
+                    <h2>Quick Actions</h2>
+                    <div class="actions-grid">
+                        <div class="action-item" onclick="goToPage('classes')">
+                            <span class="action-icon">🏃</span>
+                            <h3>View Classes</h3>
+                            <p>Browse available classes</p>
+                        </div>
+                        <div class="action-item" onclick="goToPage('facilities')">
+                            <span class="action-icon">🏢</span>
+                            <h3>Use Facilities</h3>
+                            <p>Book gym facilities</p>
+                        </div>
+                        <div class="action-item" onclick="goToPage('payments')">
+                            <span class="action-icon">💳</span>
+                            <h3>Payments</h3>
+                            <p>View payment history</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Classes Page -->
+            <div id="classesPage" class="content-page">
+                <div class="page-header">
+                    <h1>Available Classes</h1>
+                </div>
+
+                <div id="classesContainer" class="classes-container">
+                    <p class="loading">Loading classes...</p>
+                </div>
+            </div>
+
+            <!-- Attendance Page -->
+            <div id="attendancePage" class="content-page">
+                <div class="page-header">
+                    <h1>My Attendance</h1>
+                </div>
+
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="switchTab('gym')">Gym Attendance</button>
+                    <button class="tab-btn" onclick="switchTab('class')">Class Attendance</button>
+                </div>
+
+                <div id="gymTab" class="tab-content active">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Time In</th>
+                                <th>Time Out</th>
+                                <th>Duration</th>
+                            </tr>
+                        </thead>
+                        <tbody id="gymAttendanceTable">
+                            <tr><td colspan="4" class="loading">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="classTab" class="tab-content">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Class</th>
+                                <th>Trainer</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="classAttendanceTable">
+                            <tr><td colspan="4" class="loading">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Facilities Page -->
+            <div id="facilitiesPage" class="content-page">
+                <div class="page-header">
+                    <h1>Facilities</h1>
+                </div>
+
+                <div id="facilitiesContainer" class="facilities-grid">
+                    <p class="loading">Loading facilities...</p>
+                </div>
+            </div>
+
+            <!-- Payments Page -->
+            <div id="paymentsPage" class="content-page">
+                <div class="page-header">
+                    <h1>Payment History</h1>
+                </div>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Method</th>
+                            <th>Reference #</th>
+                        </tr>
+                    </thead>
+                    <tbody id="paymentsTable">
+                        <tr><td colspan="4" class="loading">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/member.js"></script>
+</body>
+</html>
